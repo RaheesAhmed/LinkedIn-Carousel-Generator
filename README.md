@@ -1,17 +1,36 @@
 # LinkedIn Carousel Generator
 
-A tool that generates professional LinkedIn carousels using Google Gemini for image generation and Pillow for creating custom slide designs.
+A tool to generate LinkedIn carousel posts from text input using various themes.
 
 ## Features
 
-- Generate background images using Google Gemini AI
-- Create professional-looking slides in LinkedIn-friendly format (1080x1080)
-- Export your carousel as a PDF
-- Save slide data in JSON format for future reference
-- Multiple input methods: interactive CLI or text file
-- Multiple theme options: default, dark, light, creative, tech
-- Customization options for logos, text colors, and individual backgrounds
-- Interactive web preview for generated carousels
+- Multiple themes (default, dark, light, creative, tech)
+- Generate carousels interactively or from a file
+- Add custom logos
+- Preview carousels in a web browser
+- Outputs PNG slides and a PDF
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+**Generate a carousel:**
+
+```bash
+python cli.py --title "My Awesome Carousel" --theme dark --slides 5
+# or
+python cli.py --title "Data Insights" --theme tech --file my_slides.txt --logo my_logo.png
+```
+
+**Preview a generated carousel:**
+
+```bash
+python preview_cli.py output/My_Awesome_Carousel_carousel_data.json
+```
 
 ## Requirements
 
@@ -125,12 +144,37 @@ You can modify the `LinkedInCarouselGenerator` class in `linkedin_carousel_gener
 - Add custom elements to slides
 - Create new themes
 
+Project Structure:
+
+```
+.
+├── cli.py                     # Entry point for generating carousels
+├── preview_cli.py             # Entry point for previewing carousels
+├── README.md
+├── requirements.txt
+├── src
+│   ├── __init__.py
+│   ├── carousel_generator
+│   │   ├── __init__.py
+│   │   ├── generator.py       # Main CarouselGenerator class
+│   │   ├── templates.py       # Slide background template functions
+│   │   ├── themes.py          # Theme definitions
+│   │   └── utils.py           # Helper functions (PDF, drawing, etc.)
+│   └── preview
+│       ├── __init__.py
+│       ├── html_generator.py  # Generates preview HTML
+│       └── server.py          # Simple HTTP server for preview
+├── output/                    # Default directory for generated carousels
+└── preview_html/              # Directory for the preview index.html
+
+```
+
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
-- Google Gemini for AI image generation
+- Google Gemini for AI Slides Text
 - Pillow for image manipulation
 - ReportLab for PDF generation
